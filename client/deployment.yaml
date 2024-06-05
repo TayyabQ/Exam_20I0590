@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client_deployment # Replace with your desired name
+spec:
+  replicas: 3 # Number of desired pods (can be scaled)
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: <https://hub.docker.com/repository/docker/tayyabqaisar/2590client/>/2590client:latest # Replace with your image details
+        ports:
+        - containerPort: 3002
+          # Optional: Add a health check (modify as needed)
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20

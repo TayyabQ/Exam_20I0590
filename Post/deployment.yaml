@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-deployment # Replace with your desired name
+spec:
+  replicas: 5 # Number of desired pods (can be scaled)
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+      labels:
+        app: post
+    spec:
+      containers:
+      - name: post
+        image: <https://hub.docker.com/repository/docker/tayyabqaisar/4590post>/4590post:latest # Replace with your image details
+        ports:
+        - containerPort: 3004
+          # Optional: Add a health check (modify as needed)
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20

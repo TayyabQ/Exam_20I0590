@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment # Replace with your desired name
+spec:
+  replicas: 1 # Number of desired pods (can be scaled)
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+      - name: auth
+        image: <https://hub.docker.com/repository/docker/tayyabqaisar/0590auth>/0590auth:latest # Replace with your image details
+        ports:
+        - containerPort: 3000
+          # Optional: Add a health check (modify as needed)
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20

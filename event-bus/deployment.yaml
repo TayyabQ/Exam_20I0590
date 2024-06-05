@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus_deployment # Replace with your desired name
+spec:
+  replicas: 4 # Number of desired pods (can be scaled)
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+      - name: event-bus
+        image: <https://hub.docker.com/repository/docker/tayyabqaisar/3590event-bus>/3590event-bus:latest # Replace with your image details
+        ports:
+        - containerPort: 3003
+          # Optional: Add a health check (modify as needed)
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20

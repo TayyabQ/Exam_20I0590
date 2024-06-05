@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: post # Replace with your desired name
+spec:
+  selector:
+    app: post
+  type: LoadBalancer # Adjust type based on your needs (e.g., NodePort)
+  ports:
+  - port: 80 # External port (can be different from container port)
+    targetPort: 3004

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classrooms-deployment # Replace with your desired name
+spec:
+  replicas: 2 # Number of desired pods (can be scaled)
+  selector:
+    matchLabels:
+      app: classrooms
+  template:
+    metadata:
+      labels:
+        app: classrooms
+    spec:
+      containers:
+      - name: classrooms
+        image: <https://hub.docker.com/repository/docker/tayyabqaisar/1590classrooms>/1590classrooms:latest # Replace with your image details
+        ports:
+        - containerPort: 3001
+          # Optional: Add a health check (modify as needed)
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20

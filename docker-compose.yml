@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  auth:
+    build:
+      context: ./0590_auth
+    ports:
+      - "0590:0590"
+    depends_on:
+      - db
+
+  classrooms:
+    build:
+      context: ./1590_classrooms
+    ports:
+      - "1590:1590"
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./2590_client
+    ports:
+      - "2590:2590"
+    depends_on:
+      - db
+
+  event-bus:
+    build:
+      context: ./3590_event-bus
+    ports:
+      - "3590:3590"
+    depends_on:
+      - db
+
+  post:
+    build:
+      context: ./4590_post
+    ports:
+      - "4590:4590"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
